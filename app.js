@@ -243,3 +243,151 @@ while (i < 10) {
 // console.log(obj);
 // console.log(obj.arr2[1]);
 */
+
+/* SHOPPING CART */
+/* Task 2 */
+/* const shoppingCart = [
+    { name: "loaf of bread", type: "food", quantity: 1, price: 0.85 },
+    { name: "multipack beans", type: "food", quantity: 1, price: 1 },
+    { name: "mushrooms", type: "food", quantity: 10, price: 0.1 },
+    { name: "can of beer", type: "alcohol", quantity: 4, price: 1.1 },
+    { name: "prosecco", type: "alcohol", quantity: 1, price: 8.99 },
+    { name: "steak", type: "food", quantity: 2, price: 3.99 },
+    { name: "blue cheese", type: "food", quantity: 1, price: 2.99 },
+    { name: "candles", type: "home", quantity: 3, price: 1.99 },
+    { name: "cheesecake", type: "food", quantity: 1, price: 4.99 },
+    { name: "onions", type: "food", quantity: 3, price: 0.4 }
+  ];
+
+  function shopTotal (cart) {
+    let totalPrice = 0;
+    for (const itemPrice of cart) {
+        if (itemPrice.type == "food") {
+            //console.log(itemPrice.name);
+            totalPrice += (itemPrice.quantity * itemPrice.price)*0.8;
+        } else {
+        totalPrice += itemPrice.quantity * itemPrice.price;
+        }
+    }
+    return totalPrice;
+  }
+
+  console.log((shopTotal(shoppingCart))); */
+
+ /* Task 3 */
+ /*  const shoppingCart = [
+    { name: "loaf of bread", type: "food", quantity: 1, price: 0.85 },
+    { name: "multipack beans", type: "food", quantity: 1, price: 1 },
+    { name: "mushrooms", type: "food", quantity: 10, price: 0.1 },
+    { name: "can of beer", type: "alcohol", quantity: 4, price: 1.1 },
+    { name: "prosecco", type: "alcohol", quantity: 1, price: 8.99 },
+    { name: "steak", type: "food", quantity: 2, price: 3.99 },
+    { name: "blue cheese", type: "food", quantity: 1, price: 2.99 },
+    { name: "candles", type: "home", quantity: 3, price: 1.99 },
+    { name: "cheesecake", type: "food", quantity: 1, price: 4.99 },
+    { name: "onions", type: "food", quantity: 3, price: 0.4 }
+  ];
+
+  function calcDiscount(quantity,price,discount){
+    let total = 0;
+    total += (quantity * price)*(1 - discount/100); 
+    return total;
+  }
+
+  function shopTotal (cart, discountAmount, type) {
+    let totalPrice = 0;
+    for (const itemPrice of cart) {
+       if (itemPrice.type === type || type === "any" ) {
+            //console.log(itemPrice.name);
+            totalPrice += calcDiscount(itemPrice.quantity, itemPrice.price, discountAmount);  
+        } else {
+        totalPrice += itemPrice.quantity * itemPrice.price;
+        }
+    }
+    return totalPrice;
+  }
+
+  console.log((shopTotal(shoppingCart,20,"food"))); */
+
+  /* Task 4 */
+  /* function priceFinder (cart,startPrice,endPrice) {
+        let productBetween = ""; 
+        productBetween += `Items priced between £${startPrice} and £${endPrice} are: `; 
+        for (const item of cart) {
+            if (startPrice <= item.price && item.price <= endPrice){
+                productBetween += `${item.name} | `;
+            }
+        }
+    return productBetween;
+  }
+
+  console.log((priceFinder(shoppingCart,1,9))); */
+
+/* const number = [1,2,3,3,4,5,6];
+function mean (noList) {
+    let meanAvg = 0;
+    for (const x of noList){
+        meanAvg += x;
+    }
+    meanAvg = meanAvg / noList.length;
+    return meanAvg;
+}
+
+console.log(mean(number));
+
+function mode (noList) {
+    middleIndex = noList.length/2
+}
+
+function median (noList) {
+    let median = 0; numslen = noList.length;
+    noList.sort();
+
+    if(numsLen % 2 === 0){
+        median = (noList[numslen/2-1] + numbers[numslen/2] ) /2;
+    } else 
+    median = noList[(numslen-1)/2];
+} */
+
+//Example array i = [1,2,2,5,6]
+/* Mode */
+function findMode (numbers){
+//Sort array
+    numbers.sort((a,b) => a -b);
+    /* console.log([numbers]); */
+//Initialize counters
+    let maxCount = 0;
+    let currentCount = 1;
+    let mode = [];  
+
+     for (let i = 1; i < numbers.length; i++){
+        //Compare index agaisnt index-1, if match add to counter
+        console.log(`Current highest mode is ${mode}`);
+        console.log(`Current count mode is ${currentCount}`);
+        if (numbers[i] === numbers[i-1] ) {
+            currentCount++; 
+            // If current count is more than current maxcount 
+            // Make new maxcount = current highest count
+            // And add the new number with highest count to mode array
+          if (currentCount > maxCount){
+                maxCount = currentCount;
+                mode = [numbers[i]]; 
+                console.log(`Current highest mode is ${mode}`);
+            } else if (currentCount === maxCount) {
+                mode.push(numbers[i]);
+            }
+            //if no number reset counter to one for next loop
+            } else {
+                currentCount = 1;
+            }  
+        
+    }
+    return mode;
+} 
+
+const numbers = [4, 2, 8, 8, 4, 8, 3, 4];
+    const modes = findMode(numbers); 
+
+   console.log(`Mode(s): ${modes}`);
+
+  
