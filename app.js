@@ -275,7 +275,7 @@ while (i < 10) {
   console.log((shopTotal(shoppingCart))); */
 
  /* Task 3 */
- /*  const shoppingCart = [
+   const shoppingCart = [
     { name: "loaf of bread", type: "food", quantity: 1, price: 0.85 },
     { name: "multipack beans", type: "food", quantity: 1, price: 1 },
     { name: "mushrooms", type: "food", quantity: 10, price: 0.1 },
@@ -287,7 +287,7 @@ while (i < 10) {
     { name: "cheesecake", type: "food", quantity: 1, price: 4.99 },
     { name: "onions", type: "food", quantity: 3, price: 0.4 }
   ];
-
+/*
   function calcDiscount(quantity,price,discount){
     let total = 0;
     total += (quantity * price)*(1 - discount/100); 
@@ -323,6 +323,58 @@ while (i < 10) {
 
   console.log((priceFinder(shoppingCart,1,9))); */
 
+// ---- TASK 5
+// Problem
+// Add extra boolean argument "quantity" if true 
+// Calculate price between two value multiplied by quantity
+
+//Pseudo
+//FOR each item in cart
+  // IF quantity true
+  // IF startPrice <= itemPrice*itemQuanity && itemPrice*itemQuanity <= endPrice
+  // if true, add itemName to string
+  // Else do normal price comparison
+
+function priceFinder1 (cart,startPrice,endPrice,quantity) {
+    let productBetween = ""; 
+    productBetween += `Items priced between £${startPrice} and £${endPrice} are: `; 
+
+    for (const item of cart) {
+        if (quantity) {
+            if (startPrice <= item.price*item.quantity && item.price**item.quantity <= endPrice){
+                productBetween += `${item.name} | `;
+        }
+    } else {
+        if (startPrice <= item.price && item.price <= endPrice){
+            productBetween += `${item.name} | `;
+        }
+    }
+}
+return productBetween;
+}
+
+// Version 2
+
+function priceFinder2 (cart,startPrice,endPrice,quantity) {
+    let output = `Items priced between £${startPrice} and £${endPrice} are: `; 
+    //.filter array function to sort out the cart array into only price or price*quantity 
+    const productBetween = cart.filter(item => {
+        const totalPrice = quantity ? item.price * item.quantity : item.price;
+        return startPrice <= totalPrice && totalPrice <= endPrice;
+    })
+    //Loop the new array to extra the name of item in the price range
+    for (const item of productBetween) {
+        output += `${item.name} | `;
+    }
+console.log(productBetween);
+//Return string with item inside price rane
+return output;
+}
+
+console.log((priceFinder2(shoppingCart,1,9,false)));
+
+
+// ---- MEAN, MEDIAN, MODE
 /* const number = [1,2,3,3,4,5,6];
 function mean (noList) {
     let meanAvg = 0;
